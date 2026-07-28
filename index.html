@@ -2193,7 +2193,7 @@ footer small {
 
 <!-- =====================================================
      RSVP
-===================================================== -->
+===================================================== 
 
 <section class="rsvp">
 
@@ -2213,12 +2213,12 @@ footer small {
 
 
 
-    <form id="rsvpForm">
+    <form id="rsvpForm"> -->
 
 
         <!-- NAME -->
 
-        <label class="field">
+       <!-- <label class="field">
 
 
             <span>
@@ -2238,13 +2238,13 @@ footer small {
             >
 
 
-        </label>
+        </label> -->
 
 
 
         <!-- ATTENDANCE -->
 
-        <fieldset>
+      <!--  <fieldset>
 
 
             <legend>
@@ -2287,13 +2287,13 @@ footer small {
             </label>
 
 
-        </fieldset>
+        </fieldset> -->
 
 
 
         <!-- GUEST COUNT -->
 
-        <label class="guest-count">
+        <!--<label class="guest-count">
 
 
             <span>
@@ -2342,13 +2342,13 @@ footer small {
             </div>
 
 
-        </label>
+        </label> -->
 
 
 
         <!-- SUBMIT -->
 
-        <button
+       <!-- <button
             class="submit-button"
             type="submit"
         >
@@ -2368,8 +2368,7 @@ footer small {
     </form>
 
 
-</section>
-
+</section> -->
 
 </main>
 
@@ -2453,9 +2452,18 @@ setInterval(updateCountdown, 1000);
 
 function setGuestCount(value) {
 
-    value = Math.min(20, Math.max(0, Number(value) || 0));
+    const guestInput = $("#guestCount");
+    const guestError = $("#guestError");
 
-    document.getElementById("guestCount").value = value;
+    let count = Math.max(0, Math.min(10, Number(value) || 0));
+
+    guestInput.value = count;
+
+    if (Number(value) > 10) {
+        guestError.textContent = "Maximum 10 attendees are allowed.";
+    } else {
+        guestError.textContent = "";
+    }
 
 }
 
