@@ -85,7 +85,7 @@ main {
 
 
 /* =========================================================
-   HERO (Overlaid Text Layout - Adjusted Height & Position)
+   HERO (Overlaid Text Layout - Single Line Names)
 ========================================================= */
 
 .hero {
@@ -94,14 +94,14 @@ main {
 
     width: 100%;
 
-    /* Slightly reduced height */
+    /* Reduced hero height */
     min-height: 80vh;
 
     min-height: 80dvh;
 
     display: flex;
 
-    align-items: flex-end; /* Align content toward the bottom */
+    align-items: flex-end; /* Align content toward bottom */
 
     justify-content: center;
 
@@ -193,7 +193,7 @@ main {
 }
 
 
-/* Fully Transparent Overlay Background */
+/* Transparent Overlay Background */
 
 .hero-image::after {
 
@@ -208,7 +208,7 @@ main {
 }
 
 
-/* Content Overlaid directly on Image & Moved Down */
+/* Content Overlaid directly on Image & Shifted Down */
 
 .hero-content {
 
@@ -226,13 +226,13 @@ main {
 
     text-align: center;
 
-    padding: 40px 20px 50px; /* Reduced top padding, comfortable bottom padding */
+    padding: 40px 20px 50px;
 
-    margin-top: auto; /* Pushes content down within the hero container */
+    margin-top: auto; /* Pushes content down within hero */
 
     width: 100%;
 
-    max-width: 800px;
+    max-width: 850px;
 
 }
 
@@ -278,7 +278,7 @@ main {
 
     font-size: 14px;
 
-    margin: 8px 0 20px;
+    margin: 8px 0 18px;
 
     opacity: 0.9;
 
@@ -300,45 +300,49 @@ main {
 }
 
 
+/* Single Line Heading Layout */
+
 .hero-content h1 {
 
     font-family: "DM Serif Display", serif;
 
-    font-size: clamp(50px, 6.5vw, 88px);
+    font-size: clamp(32px, 5.5vw, 68px);
 
     font-weight: 400;
 
-    line-height: 1.05;
+    line-height: 1.2;
 
     margin: 0;
 
     color: #ffffff;
 
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
 
     text-shadow: 0 4px 18px rgba(0,0,0,0.85);
+
+    white-space: nowrap;
 
 }
 
 
 .hero-content h1 span {
 
-    display: block;
+    display: inline-block;
 
     font-family: "DM Serif Display", serif;
 
-    font-size: 0.55em;
+    font-size: 0.8em;
 
     color: var(--gold-light);
 
-    margin: 8px 0;
+    margin: 0 10px;
 
 }
 
 
 .hero-subtitle {
 
-    margin-top: 20px;
+    margin-top: 18px;
 
     font-family: "Montserrat", sans-serif;
 
@@ -361,11 +365,11 @@ main {
 
 .hero-date {
 
-    margin-top: 20px;
+    margin-top: 18px;
 
     font-family: "DM Serif Display", serif;
 
-    font-size: 30px;
+    font-size: 28px;
 
     color: #ffffff;
 
@@ -1491,19 +1495,26 @@ footer small {
 
     }
 
+    .hero-content h1 {
+
+        font-size: clamp(24px, 7vw, 36px);
+
+        white-space: normal;
+
+    }
+
+    .hero-content h1 span {
+
+        margin: 0 5px;
+
+    }
+
 
     .small-title {
 
         font-size: 11px;
 
         letter-spacing: 4px;
-
-    }
-
-
-    .hero-content h1 {
-
-        font-size: 48px;
 
     }
 
@@ -1712,7 +1723,7 @@ footer small {
         <img src="./assets/hero-background.jpg" alt="Aswathy and Sarath">
     </div>
 
-    <!-- Hero Overlay Content (Transparent & Positioned Lower) -->
+    <!-- Hero Overlay Content (Transparent, Lowered & Single Line Text) -->
     <div class="hero-content">
 
         <div class="small-title">
@@ -1723,9 +1734,7 @@ footer small {
         <div class="ornament">❖</div>
 
         <h1>
-            Aswathy
-            <span>&amp;</span>
-            Sarath
+            Aswathy <span>&amp;</span> Sarath
         </h1>
 
         <div class="hero-subtitle">
