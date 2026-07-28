@@ -2425,6 +2425,105 @@ footer small {
 <script>
 
 /* =====================================================
+   LIGHTBOX
+===================================================== */
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeButton = document.getElementById("closeLightbox");
+
+document.querySelectorAll(".photos img").forEach(img => {
+
+    img.addEventListener("click", function () {
+
+        lightboxImage.src = this.src;
+
+        lightbox.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    });
+
+});
+
+closeButton.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", function (e) {
+
+    if (e.target === this) {
+
+        closeLightbox();
+
+    }
+
+});
+
+function closeLightbox() {
+
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+}
+
+document.addEventListener("keydown", function (e) {
+
+    if (e.key === "Escape") {
+
+        closeLightbox();
+
+    }
+
+});
+    
+/* =====================================================
+   GALLERY
+===================================================== */
+
+const photos = document.getElementById("photos");
+const figures = [...photos.querySelectorAll("figure")];
+const dotsContainer = document.getElementById("galleryDots");
+
+dotsContainer.innerHTML = figures
+    .map((_, i) => `<span class="${i === 0 ? "active" : ""}"></span>`)
+    .join("");
+
+const dots = [...dotsContainer.children];
+
+function updateDots() {
+
+    const photoWidth = figures[0].offsetWidth + 14;
+
+    const index = Math.round(photos.scrollLeft / photoWidth);
+
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+    });
+}
+
+document.getElementById("prevPhoto").addEventListener("click", () => {
+
+    photos.scrollBy({
+        left: -(figures[0].offsetWidth + 14),
+        behavior: "smooth"
+    });
+
+});
+
+document.getElementById("nextPhoto").addEventListener("click", () => {
+
+    photos.scrollBy({
+        left: figures[0].offsetWidth + 14,
+        behavior: "smooth"
+    });
+
+});
+
+photos.addEventListener("scroll", updateDots);
+
+window.addEventListener("resize", updateDots);
+    
+/* =====================================================
    COUNTDOWN
 ===================================================== */
 
@@ -2586,6 +2685,8 @@ document.getElementById("rsvpForm").addEventListener("submit", function(e) {
     }, 30000);
 
 });
+
+    
 
 </script>
 </body>
