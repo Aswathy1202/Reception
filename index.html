@@ -2535,125 +2535,23 @@ document.querySelectorAll("input[name='attending']").forEach(radio => {
 });
 
 
-
 /* =====================================================
-   GALLERY NAVIGATION & LIGHTBOX
+   RSVP FORM SUBMISSION (PREVENTS PAGE SCROLL JUMP)
 ===================================================== */
 
-const photos = document.getElementById("photos");
+document.getElementById("rsvpForm").addEventListener("submit", function(e) {
 
-const prevPhoto = document.getElementById("prevPhoto");
+    // Prevent default form submission & page refresh
+    e.preventDefault();
 
-const nextPhoto = document.getElementById("nextPhoto");
+    const formMessage = document.getElementById("formMessage");
 
-const galleryDots = document.getElementById("galleryDots");
+    // Display confirmation message without moving the page
+    formMessage.textContent = "Thank you! Your response has been recorded.";
 
-const lightbox = document.getElementById("lightbox");
-
-const lightboxImage = document.getElementById("lightboxImage");
-
-const closeLightbox = document.getElementById("closeLightbox");
-
-
-if (photos) {
-
-    const figureCount = photos.querySelectorAll("figure").length;
-
-
-    for (let i = 0; i < figureCount; i++) {
-
-        const dot = document.createElement("span");
-
-        if (i === 0) dot.classList.add("active");
-
-        galleryDots.appendChild(dot);
-
-    }
-
-
-    const dotsList = galleryDots.querySelectorAll("span");
-
-
-    photos.addEventListener("scroll", () => {
-
-        const scrollPos = photos.scrollLeft;
-
-        const itemWidth = photos.firstElementChild.offsetWidth + 14;
-
-        const activeIndex = Math.round(scrollPos / itemWidth);
-
-
-        dotsList.forEach((dot, idx) => {
-
-            dot.classList.toggle("active", idx === activeIndex);
-
-        });
-
-    });
-
-
-    if (prevPhoto && nextPhoto) {
-
-        prevPhoto.addEventListener("click", () => {
-
-            const itemWidth = photos.firstElementChild.offsetWidth + 14;
-
-            photos.scrollBy({ left: -itemWidth, behavior: "smooth" });
-
-        });
-
-
-        nextPhoto.addEventListener("click", () => {
-
-            const itemWidth = photos.firstElementChild.offsetWidth + 14;
-
-            photos.scrollBy({ left: itemWidth, behavior: "smooth" });
-
-        });
-
-    }
-
-
-    photos.querySelectorAll("img").forEach(img => {
-
-        img.addEventListener("click", () => {
-
-            lightboxImage.src = img.src;
-
-            lightboxImage.alt = img.alt;
-
-            lightbox.classList.add("active");
-
-        });
-
-    });
-
-}
-
-
-if (closeLightbox && lightbox) {
-
-    closeLightbox.addEventListener("click", () => {
-
-        lightbox.classList.remove("active");
-
-    });
-
-
-    lightbox.addEventListener("click", (e) => {
-
-        if (e.target === lightbox) {
-
-            lightbox.classList.remove("active");
-
-        }
-
-    });
-
-}
+});
 
 </script>
-
 
 </body>
 
