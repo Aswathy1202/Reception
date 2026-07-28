@@ -2404,10 +2404,7 @@ footer small {
 
 </div>
 
-
-
 <script>
-
 
 /* =====================================================
    COUNTDOWN
@@ -2536,8 +2533,10 @@ document.querySelectorAll("input[name='attending']").forEach(radio => {
 
 
 /* =====================================================
-   RSVP FORM SUBMISSION (PREVENTS PAGE SCROLL JUMP)
+   RSVP FORM SUBMISSION (WITH 3-MINUTE TIMEOUT)
 ===================================================== */
+
+let messageTimeout = null;
 
 document.getElementById("rsvpForm").addEventListener("submit", function(e) {
 
@@ -2546,13 +2545,22 @@ document.getElementById("rsvpForm").addEventListener("submit", function(e) {
 
     const formMessage = document.getElementById("formMessage");
 
-    // Display confirmation message without moving the page
+    // Clear any existing timer if form is re-submitted
+    if (messageTimeout) {
+        clearTimeout(messageTimeout);
+    }
+
+    // Display confirmation message
     formMessage.textContent = "Thank you! Your response has been recorded.";
+
+    // Hide message after 3 minutes (3 * 60 * 1000 = 180000ms)
+    messageTimeout = setTimeout(() => {
+        formMessage.textContent = "";
+    }, 180000);
 
 });
 
 </script>
-
 </body>
 
 </html>
